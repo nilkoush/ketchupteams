@@ -1,2 +1,2 @@
-rootProject.name = "KetchupEvent"
+rootProject.name = "KetchupTeams"
 
