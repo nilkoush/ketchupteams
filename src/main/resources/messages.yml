@@ -1,0 +1,31 @@
+general:
+  colors:
+    primary: "#F2142B"
+    secondary: "#e44e4e"
+    success: "green"
+    failure: "red"
+  prefix: "<primary>Event <white>•"
+  reloaded: "<prefix> <gray>Soubory konfigurace, zpráv a skupin byly znovu načteny."
+
+event:
+  enabled: "<prefix> <gray>Event systém byl zapnut."
+  disabled: "<prefix> <gray>Event systém byl vypnut."
+  is-disabled: "<prefix> <gray>Event systém je vypnutý."
+  is-enabled: "<prefix> <gray>Event systém je zapnutý."
+  already-running: "<prefix> <gray>Event již probíhá."
+  is-not-running: "<prefix> <gray>Event neprobíhá."
+  spawn:
+    set: "<prefix> <gray>Spawn byl nastaven na tvou lokaci."
+    teleport: "<prefix> <gray>Teleportoval jsi všechny skupiny na spawn."
+  build:
+    enabled: "<prefix> <gray>Pro všechny skupiny bylo povoleno stavět."
+    disabled: "<prefix> <gray>Pro všechny skupiny bylo zakázano stavět."
+  potion-effect:
+    given: "<prefix> <gray>Pro všechny skupiny <gray>byl nastaven efekt <secondary><0> <gray>na <secondary><1> <gray>sekund."
+
+group:
+  build:
+    enabled: "<prefix> <gray>Pro skupinu <secondary><0> <gray>bylo povoleno stavět."
+    disabled: "<prefix> <gray>Pro skupinu <secondary><0> <gray>bylo zakázano stavět."
+  potion-effect:
+    given: "<prefix> <gray>Pro skupinu <secondary><0> <gray>byl nastaven efekt <secondary><1> <gray>na <secondary><2> <gray>sekund."

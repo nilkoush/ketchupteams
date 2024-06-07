@@ -1,0 +1,10 @@
+name: @name@
+main: @main@
+version: @version@
+description: @description@
+author: @author@
+api-version: @api-version@
+depend:
+  - TAB
+softdepend:
+  - PlaceholderAPI
