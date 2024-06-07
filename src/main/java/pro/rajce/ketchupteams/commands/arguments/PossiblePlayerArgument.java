@@ -1,4 +1,4 @@
-package pro.rajce.ketchupevent.commands.arguments;
+package pro.rajce.ketchupteams.commands.arguments;
 
 import dev.nilkoush.thelibrary.libraries.commandapi.arguments.Argument;
 import dev.nilkoush.thelibrary.libraries.commandapi.arguments.ArgumentSuggestions;

@@ -1,4 +1,4 @@
-package pro.rajce.ketchupevent.listeners;
+package pro.rajce.ketchupteams.listeners;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -7,11 +7,10 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import pro.rajce.ketchupevent.managers.EventManager;
-import pro.rajce.ketchupevent.managers.LocationManager;
-import pro.rajce.ketchupevent.managers.ParticipantManager;
-import pro.rajce.ketchupevent.objects.Group;
-import pro.rajce.ketchupevent.objects.Participant;
+import pro.rajce.ketchupteams.managers.LocationManager;
+import pro.rajce.ketchupteams.managers.ParticipantManager;
+import pro.rajce.ketchupteams.objects.Group;
+import pro.rajce.ketchupteams.objects.Participant;
 
 public class EventListener implements Listener {
 

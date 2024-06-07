@@ -1,4 +1,4 @@
-package pro.rajce.ketchupevent;
+package pro.rajce.ketchupteams;
 
 import dev.nilkoush.thelibrary.PluginInfo;
 import dev.nilkoush.thelibrary.TheLibrary;
@@ -7,18 +7,18 @@ import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
-import pro.rajce.ketchupevent.hooks.PAPIExpansion;
-import pro.rajce.ketchupevent.objects.Group;
+import pro.rajce.ketchupteams.hooks.PAPIExpansion;
+import pro.rajce.ketchupteams.objects.Group;
 
 @Getter
 @PluginInfo
-public class KetchupEventPlugin extends JavaPlugin {
+public class KetchupTeamsPlugin extends JavaPlugin {
 
     static {
         ConfigurationSerialization.registerClass(Group.class, "Group");
     }
 
-    private static volatile KetchupEventPlugin INSTANCE;
+    private static volatile KetchupTeamsPlugin INSTANCE;
 
     private FileBuilder configFile;
     private FileBuilder messagesFile;
@@ -55,9 +55,9 @@ public class KetchupEventPlugin extends JavaPlugin {
         }
     }
 
-    public static KetchupEventPlugin getInstance() {
+    public static KetchupTeamsPlugin getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = JavaPlugin.getPlugin(KetchupEventPlugin.class);
+            INSTANCE = JavaPlugin.getPlugin(KetchupTeamsPlugin.class);
         }
 
         return INSTANCE;

@@ -7,17 +7,17 @@ val majorVersion = 1
 val minorVersion = 0
 val patchVersion = 0
 
-group = "pro.rajce.ketchupevent"
+group = "pro.rajce.ketchupteams"
 version = "$majorVersion.$minorVersion.$patchVersion"
-description = "Rajče.pro plugin for eventers"
+description = "Rajče.pro plugin for teams"
 
 configurations.all {
     resolutionStrategy.cacheChangingModulesFor(0, "seconds")
 }
 
 ext {
-    set("name", "KetchupEvent")
-    set("main", "$group.KetchupEventPlugin")
+    set("name", "KetchupTeams")
+    set("main", "$group.KetchupTeamsPlugin")
     set("version", version)
     set("description", description)
     set("author", "nilkoush")
@@ -39,8 +39,6 @@ dependencies {
 
     compileOnly("org.projectlombok:lombok:1.18.32")
     annotationProcessor("org.projectlombok:lombok:1.18.32")
-    
-    compileOnly(files("/libs/PAPI-Expansion-Server_BsLfDRo.jar"))
 
     implementation("dev.nilkoush.thelibrary:thelibrary:0.0.0-SNAPSHOT") {
         isChanging = true
@@ -54,7 +52,7 @@ dependencies {
 
 tasks {
     shadowJar {
-        relocate("dev.jorel.commandapi", "pro.rajce.ketchupcommunity.libs.commandapi")
+        relocate("dev.jorel.commandapi", "pro.rajce.ketchupteams.libs.commandapi")
         archiveFileName.set("${project.name}-$version.jar")
     }
     processResources {

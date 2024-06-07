@@ -1,12 +1,12 @@
-package pro.rajce.ketchupevent.managers;
+package pro.rajce.ketchupteams.managers;
 
 import dev.nilkoush.thelibrary.utils.FileBuilder;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import net.kyori.adventure.text.format.NamedTextColor;
-import pro.rajce.ketchupevent.KetchupEventPlugin;
-import pro.rajce.ketchupevent.objects.Group;
+import pro.rajce.ketchupteams.KetchupTeamsPlugin;
+import pro.rajce.ketchupteams.objects.Group;
 
 import java.util.*;
 
@@ -39,19 +39,19 @@ public class GroupManager {
     }
 
     private void update(String name, Group group) {
-        FileBuilder groupsFile = KetchupEventPlugin.getInstance().getGroupsFile();
+        FileBuilder groupsFile = KetchupTeamsPlugin.getInstance().getGroupsFile();
         groupsFile.set("groups." + name, group);
         groupsFile.save();
     }
 
     public List<String> getGroupNames() {
-        FileBuilder groupsFile = KetchupEventPlugin.getInstance().getGroupsFile();
+        FileBuilder groupsFile = KetchupTeamsPlugin.getInstance().getGroupsFile();
         Set<String> keys = groupsFile.getConfigurationSection("groups").getKeys(false);
         return new ArrayList<>(keys);
     }
 
     public List<Group> getGroups() {
-        FileBuilder groupsFile = KetchupEventPlugin.getInstance().getGroupsFile();
+        FileBuilder groupsFile = KetchupTeamsPlugin.getInstance().getGroupsFile();
         List<Group> groups = new ArrayList<>();
         for (String name : getGroupNames()) {
             groups.add((Group) groupsFile.get("groups." + name));
@@ -60,7 +60,7 @@ public class GroupManager {
     }
 
     public Group getGroupByName(String name) {
-        FileBuilder groupsFile = KetchupEventPlugin.getInstance().getGroupsFile();
+        FileBuilder groupsFile = KetchupTeamsPlugin.getInstance().getGroupsFile();
         return (Group) groupsFile.get("groups." + name);
     }
 

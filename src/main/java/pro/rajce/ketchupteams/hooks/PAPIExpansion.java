@@ -1,19 +1,19 @@
-package pro.rajce.ketchupevent.hooks;
+package pro.rajce.ketchupteams.hooks;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import pro.rajce.ketchupevent.KetchupEventPlugin;
-import pro.rajce.ketchupevent.managers.ParticipantManager;
-import pro.rajce.ketchupevent.objects.Group;
-import pro.rajce.ketchupevent.objects.Participant;
+import pro.rajce.ketchupteams.KetchupTeamsPlugin;
+import pro.rajce.ketchupteams.managers.ParticipantManager;
+import pro.rajce.ketchupteams.objects.Group;
+import pro.rajce.ketchupteams.objects.Participant;
 
 public class PAPIExpansion extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getIdentifier() {
-        return "ketchupevent";
+        return "ketchupteams";
     }
 
     @Override
@@ -23,7 +23,7 @@ public class PAPIExpansion extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getVersion() {
-        return KetchupEventPlugin.getInstance().getPluginMeta().getVersion();
+        return KetchupTeamsPlugin.getInstance().getPluginMeta().getVersion();
     }
 
     @Override

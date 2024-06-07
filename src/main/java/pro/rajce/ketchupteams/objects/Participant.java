@@ -1,6 +1,5 @@
-package pro.rajce.ketchupevent.objects;
+package pro.rajce.ketchupteams.objects;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;

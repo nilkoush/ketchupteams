@@ -1,4 +1,4 @@
-package pro.rajce.ketchupevent.utils;
+package pro.rajce.ketchupteams.utils;
 
 import me.neznamy.tab.api.TabAPI;
 import me.neznamy.tab.api.TabPlayer;

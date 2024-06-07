@@ -1,4 +1,4 @@
-package pro.rajce.ketchupevent.managers;
+package pro.rajce.ketchupteams.managers;
 
 import lombok.*;
 import me.neznamy.tab.api.TabAPI;
@@ -6,14 +6,13 @@ import me.neznamy.tab.api.TabPlayer;
 import me.neznamy.tab.api.nametag.NameTagManager;
 import me.neznamy.tab.api.tablist.TabListFormatManager;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
-import pro.rajce.ketchupevent.KetchupEventPlugin;
-import pro.rajce.ketchupevent.listeners.EventListener;
-import pro.rajce.ketchupevent.objects.Group;
-import pro.rajce.ketchupevent.objects.Participant;
-import pro.rajce.ketchupevent.utils.MessageUtil;
+import pro.rajce.ketchupteams.KetchupTeamsPlugin;
+import pro.rajce.ketchupteams.listeners.EventListener;
+import pro.rajce.ketchupteams.objects.Group;
+import pro.rajce.ketchupteams.objects.Participant;
+import pro.rajce.ketchupteams.utils.MessageUtil;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -30,7 +29,7 @@ public class EventManager {
         }
         enabled = true;
         Bukkit.broadcast(MessageUtil.getMessage("event.enabled"));
-        Bukkit.getPluginManager().registerEvents(new EventListener(), KetchupEventPlugin.getInstance());
+        Bukkit.getPluginManager().registerEvents(new EventListener(), KetchupTeamsPlugin.getInstance());
     }
 
     public void disable() {
@@ -40,7 +39,7 @@ public class EventManager {
         }
         stop();
         ParticipantManager.getInstance().clearCache();
-        HandlerList.unregisterAll(KetchupEventPlugin.getInstance());
+        HandlerList.unregisterAll(KetchupTeamsPlugin.getInstance());
         Bukkit.broadcast(MessageUtil.getMessage("event.disabled"));
         enabled = false;
     }

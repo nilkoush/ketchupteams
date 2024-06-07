@@ -1,4 +1,4 @@
-package pro.rajce.ketchupevent.commands;
+package pro.rajce.ketchupteams.commands;
 
 import dev.nilkoush.thelibrary.commands.TheCommand;
 import dev.nilkoush.thelibrary.libraries.commandapi.CommandAPICommand;
@@ -9,10 +9,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import pro.rajce.ketchupevent.commands.arguments.GroupArgument;
-import pro.rajce.ketchupevent.objects.Group;
-import pro.rajce.ketchupevent.managers.GroupManager;
-import pro.rajce.ketchupevent.utils.MessageUtil;
+import pro.rajce.ketchupteams.commands.arguments.GroupArgument;
+import pro.rajce.ketchupteams.objects.Group;
+import pro.rajce.ketchupteams.managers.GroupManager;
+import pro.rajce.ketchupteams.utils.MessageUtil;
 
 public class GroupCommand extends TheCommand {
 

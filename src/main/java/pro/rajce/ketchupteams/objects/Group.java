@@ -1,4 +1,4 @@
-package pro.rajce.ketchupevent.objects;
+package pro.rajce.ketchupteams.objects;
 
 import lombok.*;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -6,7 +6,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import pro.rajce.ketchupevent.KetchupEventPlugin;
 
 import java.util.*;
 

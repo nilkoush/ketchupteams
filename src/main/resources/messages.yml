@@ -4,7 +4,7 @@ general:
     secondary: "#e44e4e"
     success: "green"
     failure: "red"
-  prefix: "<primary>Event <white>•"
+  prefix: "<primary>Teams <white>•"
   reloaded: "<prefix> <gray>Soubory konfigurace, zpráv a skupin byly znovu načteny."
 
 event:

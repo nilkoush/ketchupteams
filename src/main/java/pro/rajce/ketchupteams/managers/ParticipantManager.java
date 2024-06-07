@@ -1,10 +1,9 @@
-package pro.rajce.ketchupevent.managers;
+package pro.rajce.ketchupteams.managers;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.bukkit.entity.Player;
-import pro.rajce.ketchupevent.objects.Group;
-import pro.rajce.ketchupevent.objects.Participant;
+import pro.rajce.ketchupteams.objects.Participant;
 
 import java.util.*;
 

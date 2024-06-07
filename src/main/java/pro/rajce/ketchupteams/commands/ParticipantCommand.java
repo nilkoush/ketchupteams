@@ -1,16 +1,16 @@
-package pro.rajce.ketchupevent.commands;
+package pro.rajce.ketchupteams.commands;
 
 import dev.nilkoush.thelibrary.commands.TheCommand;
 import dev.nilkoush.thelibrary.libraries.commandapi.CommandAPICommand;
 import dev.nilkoush.thelibrary.libraries.commandapi.executors.CommandArguments;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pro.rajce.ketchupevent.commands.arguments.GroupArgument;
-import pro.rajce.ketchupevent.commands.arguments.PossiblePlayerArgument;
-import pro.rajce.ketchupevent.managers.GroupManager;
-import pro.rajce.ketchupevent.managers.ParticipantManager;
-import pro.rajce.ketchupevent.objects.Group;
-import pro.rajce.ketchupevent.objects.Participant;
+import pro.rajce.ketchupteams.commands.arguments.GroupArgument;
+import pro.rajce.ketchupteams.commands.arguments.PossiblePlayerArgument;
+import pro.rajce.ketchupteams.managers.GroupManager;
+import pro.rajce.ketchupteams.managers.ParticipantManager;
+import pro.rajce.ketchupteams.objects.Group;
+import pro.rajce.ketchupteams.objects.Participant;
 
 public class ParticipantCommand extends TheCommand {
 

@@ -1,10 +1,10 @@
-package pro.rajce.ketchupevent.utils;
+package pro.rajce.ketchupteams.utils;
 
 import dev.nilkoush.thelibrary.utils.FileBuilder;
 import dev.nilkoush.thelibrary.utils.FormatUtil;
 import lombok.experimental.UtilityClass;
 import net.kyori.adventure.text.Component;
-import pro.rajce.ketchupevent.KetchupEventPlugin;
+import pro.rajce.ketchupteams.KetchupTeamsPlugin;
 
 @UtilityClass
 public class MessageUtil {
@@ -14,7 +14,7 @@ public class MessageUtil {
     }
 
     public Component getMessage(String id, String... args) {
-        FileBuilder messagesFile = KetchupEventPlugin.getInstance().getMessagesFile();
+        FileBuilder messagesFile = KetchupTeamsPlugin.getInstance().getMessagesFile();
 
         if (!messagesFile.isSet(id)) {
             return FormatUtil.format("<red>Message with id '" + id + "' does not exist.</red>");

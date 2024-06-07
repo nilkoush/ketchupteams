@@ -1,11 +1,11 @@
-package pro.rajce.ketchupevent.commands.arguments;
+package pro.rajce.ketchupteams.commands.arguments;
 
 import dev.nilkoush.thelibrary.libraries.commandapi.arguments.Argument;
 import dev.nilkoush.thelibrary.libraries.commandapi.arguments.ArgumentSuggestions;
 import dev.nilkoush.thelibrary.libraries.commandapi.arguments.CustomArgument;
 import dev.nilkoush.thelibrary.libraries.commandapi.arguments.StringArgument;
-import pro.rajce.ketchupevent.objects.Group;
-import pro.rajce.ketchupevent.managers.GroupManager;
+import pro.rajce.ketchupteams.objects.Group;
+import pro.rajce.ketchupteams.managers.GroupManager;
 
 public class GroupArgument {
 
