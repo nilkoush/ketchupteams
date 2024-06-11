@@ -13,42 +13,16 @@ import pro.rajce.ketchupteams.listeners.EventListener;
 import pro.rajce.ketchupteams.objects.Group;
 import pro.rajce.ketchupteams.objects.Participant;
 import pro.rajce.ketchupteams.utils.MessageUtil;
+import pro.rajce.ketchupteams.utils.NicknameUtil;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class EventManager {
 
     private static EventManager INSTANCE;
-    private boolean enabled = false;
     private boolean running = false;
 
-    public void enable() {
-        if (enabled) {
-            Bukkit.broadcast(MessageUtil.getMessage("event.is-enabled"));
-            return;
-        }
-        enabled = true;
-        Bukkit.broadcast(MessageUtil.getMessage("event.enabled"));
-        Bukkit.getPluginManager().registerEvents(new EventListener(), KetchupTeamsPlugin.getInstance());
-    }
-
-    public void disable() {
-        if (!enabled) {
-            Bukkit.broadcast(MessageUtil.getMessage("event.is-disabled"));
-            return;
-        }
-        stop();
-        ParticipantManager.getInstance().clearCache();
-        HandlerList.unregisterAll(KetchupTeamsPlugin.getInstance());
-        Bukkit.broadcast(MessageUtil.getMessage("event.disabled"));
-        enabled = false;
-    }
-
     public void start() {
-        if (!enabled) {
-            Bukkit.broadcast(MessageUtil.getMessage("event.is-disabled"));
-            return;
-        }
         if (running) {
             Bukkit.broadcast(MessageUtil.getMessage("event.is-already-running"));
             return;
@@ -59,31 +33,18 @@ public class EventManager {
             Participant participant = ParticipantManager.getInstance().getParticipant(pp);
             Group group = participant.getGroup();
             if (group == null) return;
+            NicknameUtil.setColor(pp, group.getColor().asHexString());
         }
     }
 
     public void stop() {
-        if (!enabled) {
-            Bukkit.broadcast(MessageUtil.getMessage("event.is-disabled"));
-            return;
-        }
         if (!running) {
             Bukkit.broadcast(MessageUtil.getMessage("event.is-not-running"));
             return;
         }
 
         for (Player pp : Bukkit.getOnlinePlayers()) {
-            TabPlayer tabPlayer = TabAPI.getInstance().getPlayer(pp.getUniqueId());
-            if (tabPlayer != null) {
-                NameTagManager nameTagManager = TabAPI.getInstance().getNameTagManager();
-                TabListFormatManager tabListFormatManager = TabAPI.getInstance().getTabListFormatManager();
-                if (nameTagManager != null) {
-                    nameTagManager.setPrefix(tabPlayer, nameTagManager.getOriginalPrefix(tabPlayer));
-                }
-                if (tabListFormatManager != null) {
-                    tabListFormatManager.setPrefix(tabPlayer, tabListFormatManager.getOriginalPrefix(tabPlayer));
-                }
-            }
+            NicknameUtil.reset(pp);
         }
         running = false;
     }

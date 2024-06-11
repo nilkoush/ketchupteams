@@ -5,8 +5,11 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import net.kyori.adventure.text.format.NamedTextColor;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import pro.rajce.ketchupteams.KetchupTeamsPlugin;
 import pro.rajce.ketchupteams.objects.Group;
+import pro.rajce.ketchupteams.utils.NicknameUtil;
 
 import java.util.*;
 
@@ -17,7 +20,7 @@ public class GroupManager {
     private static GroupManager INSTANCE;
 
     public Group createGroup(String name) {
-        Group group = new Group(name, NamedTextColor.WHITE, false);
+        Group group = new Group(name, NamedTextColor.WHITE, null, false);
 
         update(name, group);
 
@@ -28,8 +31,16 @@ public class GroupManager {
         update(name, null);
     }
 
+    public void setGameSpawn(Group group, Location location) {
+        group.setGameSpawn(location);
+        update(group.getName(), group);
+    }
+
     public void setColor(Group group, NamedTextColor color) {
         group.setColor(color);
+        for (Player pp : group.getMembers()) {
+            NicknameUtil.setColor(pp, color.asHexString());
+        }
         update(group.getName(), group);
     }
 

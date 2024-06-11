@@ -20,24 +20,22 @@ import pro.rajce.ketchupteams.objects.Group;
 import pro.rajce.ketchupteams.objects.Participant;
 import pro.rajce.ketchupteams.utils.MessageUtil;
 
+import java.util.List;
+
 public class EventCommand extends TheCommand {
 
     @Override
     public void register() {
         new CommandAPICommand("event")
                 .withPermission("ketchupevent.command.event")
-                .withSubcommand(new CommandAPICommand("enable")
-                        .executes(EventCommand::enable))
-                .withSubcommand(new CommandAPICommand("disable")
-                        .executes(EventCommand::disable))
                 .withSubcommand(new CommandAPICommand("start")
                         .executes(EventCommand::start))
                 .withSubcommand(new CommandAPICommand("stop")
                         .executes(EventCommand::stop))
-                .withSubcommand(new CommandAPICommand("setspawn")
-                        .executesPlayer(EventCommand::setSpawn))
-                .withSubcommand(new CommandAPICommand("teleportspawn")
-                        .executesPlayer(EventCommand::teleportSpawn))
+                .withSubcommand(new CommandAPICommand("setgamespawn")
+                        .executesPlayer(EventCommand::setGameSpawn))
+                .withSubcommand(new CommandAPICommand("teleportgamespawn")
+                        .executesPlayer(EventCommand::teleportGameSpawn))
                 .withSubcommand(new CommandAPICommand("enablebuild")
                         .executes(EventCommand::enableBuild))
                 .withSubcommand(new CommandAPICommand("disablebuild")
@@ -56,14 +54,6 @@ public class EventCommand extends TheCommand {
                 .register();
     }
 
-    public static void enable(CommandSender commandSender, CommandArguments commandArguments) {
-        EventManager.getInstance().enable();
-    }
-
-    public static void disable(CommandSender commandSender, CommandArguments commandArguments) {
-        EventManager.getInstance().disable();
-    }
-
     public static void start(CommandSender commandSender, CommandArguments commandArguments) {
         EventManager.getInstance().start();
     }
@@ -72,15 +62,17 @@ public class EventCommand extends TheCommand {
         EventManager.getInstance().stop();
     }
 
-    public static void setSpawn(Player player, CommandArguments commandArguments) {
-        EventManager.getInstance().setSpawn(player);
+    public static void setGameSpawn(Player player, CommandArguments commandArguments) {
+        for (Group group : GroupManager.getInstance().getGroups()) {
+            GroupManager.getInstance().setGameSpawn(group, player.getLocation());
+        }
         player.sendMessage(MessageUtil.getMessage("event.spawn.set"));
     }
 
-    public static void teleportSpawn(Player player, CommandArguments commandArguments) {
+    public static void teleportGameSpawn(Player player, CommandArguments commandArguments) {
         for (Group group : GroupManager.getInstance().getGroups()) {
             for (Player pp : group.getMembers()) {
-                pp.teleport(EventManager.getInstance().getSpawn());
+                pp.teleport(group.getGameSpawn());
             }
         }
         player.sendMessage(MessageUtil.getMessage("event.spawn.teleport"));
@@ -142,8 +134,17 @@ public class EventCommand extends TheCommand {
     public static void randomize(CommandSender sender, CommandArguments commandArguments) {
         for (Player pp : Bukkit.getOnlinePlayers()) {
             Participant participant = ParticipantManager.getInstance().getParticipant(pp);
-            if (participant.isSupervisor() || participant.isSpectator()) continue;
-
+            List<Group> groups = GroupManager.getInstance().getGroups();
+            int numberOfGroups = GroupManager.getInstance().getGroups().size();
+            int participantsPerGroup = (int) Math.ceil(Math.div(Bukkit.getOnlinePlayers().size(), numberOfGroups));
+            if (participant.getGroup() == null) {
+                for (int i = 0; i < Bukkit.getOnlinePlayers().size(); i++) {
+                    Group group = groups.get(i % numberOfGroups);
+                    if (group.getMembers().size() < participantsPerGroup) {
+                        ParticipantManager.getInstance().setGroup(pp, group);
+                    }
+                }
+            }
         }
     }
 }

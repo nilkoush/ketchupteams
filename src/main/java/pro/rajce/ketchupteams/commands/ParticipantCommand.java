@@ -21,6 +21,9 @@ public class ParticipantCommand extends TheCommand {
                 .withSubcommand(new CommandAPICommand("setgroup")
                         .withArguments(PossiblePlayerArgument.argument("target"), GroupArgument.argument("group"))
                         .executes(ParticipantCommand::setGroup))
+                .withSubcommand(new CommandAPICommand("resetgroup")
+                        .withArguments(PossiblePlayerArgument.argument("target"))
+                        .executes(ParticipantCommand::resetGroup))
                 .withSubcommand(new CommandAPICommand("togglesupervisor")
                         .withOptionalArguments(PossiblePlayerArgument.argument("target"))
                         .executesPlayer(ParticipantCommand::toggleSupervisor))
@@ -36,21 +39,23 @@ public class ParticipantCommand extends TheCommand {
         Group group = (Group) commandArguments.get("group");
         assert group != null;
 
-        GroupManager.getInstance().getGroups().forEach(possibleGroup -> possibleGroup.removeMember(target));
-        Participant participant = ParticipantManager.getInstance().getParticipant(target);
-        participant.setGroup(group);
-        group.addMember(target);
+        ParticipantManager.getInstance().setGroup(target, group);
+    }
+
+    public static void resetGroup(CommandSender commandSender, CommandArguments commandArguments) {
+        Player target = (Player) commandArguments.get("target");
+        assert target != null;
+
+        ParticipantManager.getInstance().resetGroup(target);
     }
 
     public static void toggleSupervisor(Player player, CommandArguments commandArguments) {
         Player target = (Player) commandArguments.getOptional("target").orElse(player);
-        Participant participant = ParticipantManager.getInstance().getParticipant(target);
-        participant.setSupervisor(true);
+        ParticipantManager.getInstance().toggleSupervisor(target);
     }
 
     public static void toggleSpectator(Player player, CommandArguments commandArguments) {
         Player target = (Player) commandArguments.getOptional("target").orElse(player);
-        Participant participant = ParticipantManager.getInstance().getParticipant(target);
-        participant.setSpectator(true);
+        ParticipantManager.getInstance().toggleSpectator(target);
     }
 }
