@@ -136,7 +136,7 @@ public class EventCommand extends TheCommand {
             Participant participant = ParticipantManager.getInstance().getParticipant(pp);
             List<Group> groups = GroupManager.getInstance().getGroups();
             int numberOfGroups = GroupManager.getInstance().getGroups().size();
-            int participantsPerGroup = (int) Math.ceil(Math.div(Bukkit.getOnlinePlayers().size(), numberOfGroups));
+            int participantsPerGroup = (int) (double) Math.floorDiv(Bukkit.getOnlinePlayers().size(), numberOfGroups);
             if (participant.getGroup() == null) {
                 for (int i = 0; i < Bukkit.getOnlinePlayers().size(); i++) {
                     Group group = groups.get(i % numberOfGroups);

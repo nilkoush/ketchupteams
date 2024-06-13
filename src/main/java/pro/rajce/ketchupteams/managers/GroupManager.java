@@ -29,6 +29,9 @@ public class GroupManager {
 
     public void deleteGroup(String name) {
         update(name, null);
+        for (Player pp : getGroupByName(name).getMembers()) {
+            ParticipantManager.getInstance().resetGroup(pp);
+        }
     }
 
     public void setGameSpawn(Group group, Location location) {

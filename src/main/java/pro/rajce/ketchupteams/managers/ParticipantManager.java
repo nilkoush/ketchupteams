@@ -44,6 +44,14 @@ public class ParticipantManager {
         participant.setSupervisor(!participant.isSupervisor());
     }
 
+    public void setKills(Player player, int kills) {
+        getParticipant(player).setKills(kills);
+    }
+
+    public void setDeaths(Player player, int deaths) {
+        getParticipant(player).setDeaths(deaths);
+    }
+
     public void clearCache() {
         cache.clear();
     }

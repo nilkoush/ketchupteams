@@ -4,6 +4,7 @@ import dev.nilkoush.thelibrary.commands.TheCommand;
 import dev.nilkoush.thelibrary.libraries.commandapi.CommandAPICommand;
 import dev.nilkoush.thelibrary.libraries.commandapi.arguments.*;
 import dev.nilkoush.thelibrary.libraries.commandapi.executors.CommandArguments;
+import dev.nilkoush.thelibrary.utils.FormatUtil;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -20,6 +21,8 @@ public class GroupCommand extends TheCommand {
     public void register() {
         new CommandAPICommand("group")
                 .withPermission("ketchupevent.command.group")
+                .withSubcommand(new CommandAPICommand("list")
+                        .executes(GroupCommand::list))
                 .withSubcommand(new CommandAPICommand("create")
                         .withArguments(new StringArgument("name"))
                         .executes(GroupCommand::create))
@@ -42,6 +45,12 @@ public class GroupCommand extends TheCommand {
                         .withArguments(GroupArgument.argument("group"), new PotionEffectArgument("potion"), new TimeArgument("duration"), new IntegerArgument("strength"))
                         .executes(GroupCommand::givePotionEffect))
                 .register();
+    }
+
+    public static void list(CommandSender commandSender, CommandArguments commandArguments) {
+        for (Group group : GroupManager.getInstance().getGroups()) {
+            commandSender.sendMessage(FormatUtil.format("<gray>- " + group.getName()));
+        }
     }
 
     public static void create(CommandSender commandSender, CommandArguments commandArguments) {
