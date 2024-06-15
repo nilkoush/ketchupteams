@@ -19,12 +19,10 @@ public class GroupManager {
 
     private static GroupManager INSTANCE;
 
-    public Group createGroup(String name) {
-        Group group = new Group(name, NamedTextColor.WHITE, null, false);
+    public void createGroup(String name) {
+        Group group = new Group(name, NamedTextColor.WHITE, null, false, false);
 
         update(name, group);
-
-        return group;
     }
 
     public void deleteGroup(String name) {
@@ -49,6 +47,11 @@ public class GroupManager {
 
     public void setCanBuild(Group group, boolean canBuild) {
         group.setCanBuild(canBuild);
+        update(group.getName(), group);
+    }
+
+    public void setIntraPvp(Group group, boolean canBuild) {
+        group.setIntraPvp(canBuild);
         update(group.getName(), group);
     }
 

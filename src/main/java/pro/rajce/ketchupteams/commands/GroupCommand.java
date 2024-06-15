@@ -20,7 +20,7 @@ public class GroupCommand extends TheCommand {
     @Override
     public void register() {
         new CommandAPICommand("group")
-                .withPermission("ketchupevent.command.group")
+                .withPermission("ketchupteams.command.group")
                 .withSubcommand(new CommandAPICommand("list")
                         .executes(GroupCommand::list))
                 .withSubcommand(new CommandAPICommand("create")
@@ -88,6 +88,20 @@ public class GroupCommand extends TheCommand {
         assert group != null;;
         GroupManager.getInstance().setCanBuild(group, false);
         commandSender.sendMessage(MessageUtil.getMessage("group.build.disabled", group.getName()));
+    }
+
+    public static void enableIntraPvp(CommandSender commandSender, CommandArguments commandArguments) {
+        Group group = (Group) commandArguments.get("group");
+        assert group != null;
+        GroupManager.getInstance().setIntraPvp(group, true);
+        commandSender.sendMessage(MessageUtil.getMessage("group.intra-pvp.enabled", group.getName()));
+    }
+
+    public static void disableIntraPvp(CommandSender commandSender, CommandArguments commandArguments) {
+        Group group = (Group) commandArguments.get("group");
+        assert group != null;;
+        GroupManager.getInstance().setIntraPvp(group, false);
+        commandSender.sendMessage(MessageUtil.getMessage("group.intra-pvp.disabled", group.getName()));
     }
 
     public static void giveHandItem(Player player, CommandArguments commandArguments) {

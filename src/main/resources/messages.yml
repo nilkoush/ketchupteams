@@ -14,12 +14,18 @@ event:
   is-enabled: "<prefix> <gray>Event systém je zapnutý."
   already-running: "<prefix> <gray>Event již probíhá."
   is-not-running: "<prefix> <gray>Event neprobíhá."
+  lobby:
+    set: "<prefix> <gray>Lobby lokace byla nastaven na tvou lokaci."
+    teleport: "<prefix> <gray>Teleportoval jsi všechny hráče na lobby lokaci."
   spawn:
-    set: "<prefix> <gray>Spawn byl nastaven na tvou lokaci."
-    teleport: "<prefix> <gray>Teleportoval jsi všechny skupiny na spawn."
+    set: "<prefix> <gray>Spawn lokace byla nastaven na tvou lokaci."
+    teleport: "<prefix> <gray>Teleportoval jsi všechny skupiny na spawn lokaci."
   build:
     enabled: "<prefix> <gray>Pro všechny skupiny bylo povoleno stavět."
     disabled: "<prefix> <gray>Pro všechny skupiny bylo zakázano stavět."
+  pvp:
+    enabled: "<prefix> <gray>PvP mezi skupinami bylo <green>zapnuto<gray>."
+    disabled: "<prefix> <gray>PvP mezi skupinami bylo <red>vypnuto<gray>."
   potion-effect:
     given: "<prefix> <gray>Pro všechny skupiny <gray>byl nastaven efekt <secondary><0> <gray>na <secondary><1> <gray>sekund."
 
@@ -27,5 +33,8 @@ group:
   build:
     enabled: "<prefix> <gray>Pro skupinu <secondary><0> <gray>bylo povoleno stavět."
     disabled: "<prefix> <gray>Pro skupinu <secondary><0> <gray>bylo zakázano stavět."
+  intra-pvp:
+    enabled: "<prefix> <gray>Pro skupinu <secondary><0> <gray>bylo <green>povoleno <gray>se zabíjet."
+    disabled: "<prefix> <gray>Pro skupinu <secondary><0> <gray>bylo <red>zakázano <gray> se zabíjet."
   potion-effect:
     given: "<prefix> <gray>Pro skupinu <secondary><0> <gray>byl nastaven efekt <secondary><1> <gray>na <secondary><2> <gray>sekund."

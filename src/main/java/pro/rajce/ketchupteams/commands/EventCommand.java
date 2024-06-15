@@ -28,10 +28,10 @@ public class EventCommand extends TheCommand {
     public void register() {
         new CommandAPICommand("event")
                 .withPermission("ketchupevent.command.event")
-                .withSubcommand(new CommandAPICommand("start")
-                        .executes(EventCommand::start))
-                .withSubcommand(new CommandAPICommand("stop")
-                        .executes(EventCommand::stop))
+                .withSubcommand(new CommandAPICommand("setlobby")
+                        .executesPlayer(EventCommand::setLobby))
+                .withSubcommand(new CommandAPICommand("teleportlobby")
+                        .executesPlayer(EventCommand::teleportLobby))
                 .withSubcommand(new CommandAPICommand("setgamespawn")
                         .executesPlayer(EventCommand::setGameSpawn))
                 .withSubcommand(new CommandAPICommand("teleportgamespawn")
@@ -40,26 +40,33 @@ public class EventCommand extends TheCommand {
                         .executes(EventCommand::enableBuild))
                 .withSubcommand(new CommandAPICommand("disablebuild")
                         .executes(EventCommand::disableBuild))
+                .withSubcommand(new CommandAPICommand("enablepvp")
+                        .executes(EventCommand::enablePvp))
+                .withSubcommand(new CommandAPICommand("disablepvp")
+                        .executes(EventCommand::disablePvp))
+                .withSubcommand(new CommandAPICommand("enablecollisions")
+                        .executes(EventCommand::enableCollisions))
+                .withSubcommand(new CommandAPICommand("disablecollisions")
+                        .executes(EventCommand::disableCollisions))
                 .withSubcommand(new CommandAPICommand("givehanditem")
                         .executesPlayer(EventCommand::giveHandItem))
                 .withSubcommand(new CommandAPICommand("givepotioneffect")
                         .withArguments(new PotionEffectArgument("potion"), new TimeArgument("duration"), new IntegerArgument("strength"))
                         .executes(EventCommand::givePotionEffect))
-                .withSubcommand(new CommandAPICommand("enablecollisions")
-                        .executes(EventCommand::enableCollisions))
-                .withSubcommand(new CommandAPICommand("disablecollisions")
-                        .executes(EventCommand::disableCollisions))
                 .withSubcommand(new CommandAPICommand("randomize")
                         .executes(EventCommand::randomize))
                 .register();
     }
 
-    public static void start(CommandSender commandSender, CommandArguments commandArguments) {
-        EventManager.getInstance().start();
+    public static void setLobby(Player player, CommandArguments commandArguments) {
+        EventManager.getInstance().setLobby(player);
     }
 
-    public static void stop(CommandSender commandSender, CommandArguments commandArguments) {
-        EventManager.getInstance().stop();
+    public static void teleportLobby(Player player, CommandArguments commandArguments) {
+        for (Player pp : Bukkit.getOnlinePlayers()) {
+            pp.teleport(EventManager.getInstance().getLobby());
+        }
+        player.sendMessage(MessageUtil.getMessage("event.lobby.teleport"));
     }
 
     public static void setGameSpawn(Player player, CommandArguments commandArguments) {
@@ -92,6 +99,16 @@ public class EventCommand extends TheCommand {
         commandSender.sendMessage(MessageUtil.getMessage("event.build.disabled"));
     }
 
+    public static void enablePvp(CommandSender commandSender, CommandArguments commandArguments) {
+        EventManager.getInstance().setPvp(true);
+        commandSender.sendMessage(MessageUtil.getMessage("event.pvp.enabled"));
+    }
+
+    public static void disablePvp(CommandSender commandSender, CommandArguments commandArguments) {
+        EventManager.getInstance().setPvp(false);
+        commandSender.sendMessage(MessageUtil.getMessage("event.pvp.disabled"));
+    }
+
     public static void giveHandItem(Player player, CommandArguments commandArguments) {
         for (Group group : GroupManager.getInstance().getGroups()) {
             for (Player pp : group.getMembers()) {
@@ -110,7 +127,7 @@ public class EventCommand extends TheCommand {
 
         for (Group group : GroupManager.getInstance().getGroups()) {
             for (Player pp : group.getMembers()) {
-                pp.addPotionEffect(new PotionEffect(potion, duration, strength));
+                pp.addPotionEffect(new PotionEffect(potion, duration * 10, strength));
             }
         }
 

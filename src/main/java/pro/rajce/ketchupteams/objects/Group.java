@@ -18,6 +18,7 @@ public class Group implements ConfigurationSerializable {
     private NamedTextColor color;
     private Location gameSpawn;
     private boolean canBuild;
+    private boolean intraPvp;
     private final List<UUID> members = new ArrayList<>();
 
     public void addMember(Player player) {
@@ -40,7 +41,8 @@ public class Group implements ConfigurationSerializable {
         NamedTextColor color = NamedTextColor.namedColor((Integer) data.get("color"));
         Location gameSpawn = (Location) data.get("game-spawn");
         boolean build = (boolean) data.get("can-build");
-        return new Group(name, color, gameSpawn, build);
+        boolean isIntraPvp = (boolean) data.get("intra-pvp");
+        return new Group(name, color, gameSpawn, isIntraPvp, build);
     }
 
     @Override
@@ -50,6 +52,7 @@ public class Group implements ConfigurationSerializable {
         data.put("color", color.value());
         data.put("game-spawn", gameSpawn);
         data.put("can-build", canBuild);
+        data.put("intra-pvp", intraPvp);
         return data;
     }
 }

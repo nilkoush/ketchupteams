@@ -6,8 +6,10 @@ import dev.nilkoush.thelibrary.utils.FileBuilder;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import pro.rajce.ketchupteams.hooks.PAPIExpansion;
+import pro.rajce.ketchupteams.listeners.EventListener;
 import pro.rajce.ketchupteams.objects.Group;
 
 @Getter
@@ -41,12 +43,18 @@ public class KetchupTeamsPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         TheLibrary.onEnable();
+        registerListeners();
         registerHooks();
     }
 
     @Override
     public void onDisable() {
         TheLibrary.onDisable();
+    }
+
+    private void registerListeners() {
+        PluginManager pm = Bukkit.getPluginManager();
+        pm.registerEvents(new EventListener(), this);
     }
 
     private void registerHooks() {

@@ -18,7 +18,7 @@ public class ParticipantCommand extends TheCommand {
     @Override
     public void register() {
         new CommandAPICommand("participant")
-                .withPermission("ketchupevent.command.participant")
+                .withPermission("ketchupteams.command.participant")
                 .withSubcommand(new CommandAPICommand("setgroup")
                         .withArguments(PossiblePlayerArgument.argument("target"), GroupArgument.argument("group"))
                         .executes(ParticipantCommand::setGroup))
