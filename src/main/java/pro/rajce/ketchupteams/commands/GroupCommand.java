@@ -32,12 +32,24 @@ public class GroupCommand extends TheCommand {
                 .withSubcommand(new CommandAPICommand("setcolor")
                         .withArguments(GroupArgument.argument("group"), new AdventureChatColorArgument("color"))
                         .executes(GroupCommand::setColor))
+                .withSubcommand(new CommandAPICommand("setgamespawn")
+                        .withArguments(GroupArgument.argument("group"))
+                        .executesPlayer(GroupCommand::setGameSpawn))
+                .withSubcommand(new CommandAPICommand("teleportgamespawn")
+                        .withArguments(GroupArgument.argument("group"))
+                        .executesPlayer(GroupCommand::teleportGameSpawn))
                 .withSubcommand(new CommandAPICommand("enablebuild")
                         .withArguments(GroupArgument.argument("group"))
                         .executes(GroupCommand::enableBuild))
                 .withSubcommand(new CommandAPICommand("disablebuild")
                         .withArguments(GroupArgument.argument("group"))
                         .executes(GroupCommand::disableBuild))
+                .withSubcommand(new CommandAPICommand("enableintrapvp")
+                        .withArguments(GroupArgument.argument("group"))
+                        .executes(GroupCommand::enableIntraPvp))
+                .withSubcommand(new CommandAPICommand("disableintrapvp")
+                        .withArguments(GroupArgument.argument("group"))
+                        .executes(GroupCommand::disableIntraPvp))
                 .withSubcommand(new CommandAPICommand("givehanditem")
                         .withArguments(GroupArgument.argument("group"))
                         .executesPlayer(GroupCommand::giveHandItem))
@@ -127,5 +139,22 @@ public class GroupCommand extends TheCommand {
         }
 
         commandSender.sendMessage(MessageUtil.getMessage("group.potion-effect.given", group.getName(), potion.getName(), Integer.toString(duration), Integer.toString(strength)));
+    }
+
+    public static void setGameSpawn(Player player, CommandArguments commandArguments) {
+        Group group = (Group) commandArguments.get("group");
+        assert group != null;
+
+        GroupManager.getInstance().setGameSpawn(group, player.getLocation());
+        player.sendMessage(MessageUtil.getMessage("group.game-spawn.set"));
+    }
+
+    public static void teleportGameSpawn(Player player, CommandArguments commandArguments) {
+        Group group = (Group) commandArguments.get("group");
+        assert group != null;
+        for (Player pp : group.getMembers()) {
+            pp.teleport(group.getGameSpawn());
+        }
+        player.sendMessage(MessageUtil.getMessage("group.game-spawn.teleport"));
     }
 }

@@ -36,5 +36,8 @@ group:
   intra-pvp:
     enabled: "<prefix> <gray>Pro skupinu <secondary><0> <gray>bylo <green>povoleno <gray>se zabíjet."
     disabled: "<prefix> <gray>Pro skupinu <secondary><0> <gray>bylo <red>zakázano <gray> se zabíjet."
+  game-spawn:
+    set: "<prefix> <gray>Game Spawn lokace skupiny <0> byla nastaven na tvou lokaci."
+    teleport: "<prefix> <gray>Teleportoval jsi skupinu <0> na game spawn lokaci."
   potion-effect:
     given: "<prefix> <gray>Pro skupinu <secondary><0> <gray>byl nastaven efekt <secondary><1> <gray>na <secondary><2> <gray>sekund."

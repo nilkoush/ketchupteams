@@ -55,6 +55,8 @@ public class EventCommand extends TheCommand {
                         .executes(EventCommand::givePotionEffect))
                 .withSubcommand(new CommandAPICommand("randomize")
                         .executes(EventCommand::randomize))
+                .withSubcommand(new CommandAPICommand("resetgroups")
+                        .executes(EventCommand::resetGroups))
                 .register();
     }
 
@@ -158,10 +160,18 @@ public class EventCommand extends TheCommand {
                 for (int i = 0; i < Bukkit.getOnlinePlayers().size(); i++) {
                     Group group = groups.get(i % numberOfGroups);
                     if (group.getMembers().size() < participantsPerGroup) {
-                        ParticipantManager.getInstance().setGroup(pp, group);
+                        if (!participant.isSupervisor()) {
+                            ParticipantManager.getInstance().setGroup(pp, group);
+                        }
                     }
                 }
             }
+        }
+    }
+
+    public static void resetGroups(CommandSender sender, CommandArguments commandArguments) {
+        for (Player pp : Bukkit.getOnlinePlayers()) {
+            ParticipantManager.getInstance().resetGroup(pp);
         }
     }
 }

@@ -10,6 +10,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import pro.rajce.ketchupteams.hooks.PAPIExpansion;
 import pro.rajce.ketchupteams.listeners.EventListener;
+import pro.rajce.ketchupteams.listeners.TabPluginListener;
 import pro.rajce.ketchupteams.objects.Group;
 
 @Getter
@@ -45,6 +46,7 @@ public class KetchupTeamsPlugin extends JavaPlugin {
         TheLibrary.onEnable();
         registerListeners();
         registerHooks();
+        new TabPluginListener();
     }
 
     @Override
